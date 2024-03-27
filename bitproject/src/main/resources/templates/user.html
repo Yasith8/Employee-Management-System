@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Management | Bit Project 2024</title>
+    <link rel="icon" href="resources/image/Vector-12.png">
+
+
+    <!-- link bs5 css file -->
+    <link rel="stylesheet" href="resources/bootstrap-5.2.3/css/bootstrap.min.css">
+
+    <!-- link bs5 js file -->
+    <script src="resources/bootstrap-5.2.3/js/bootstrap.bundle.min.js">
+    </script>
+
+    <!-- lik fontawesome css file -->
+    <link rel="stylesheet" href="resources/fontawesome-free-6.4.2/css/all.css">
+
+    <!-- link jquery js file -->
+    <script src="resources/script/jquery-3.7.1.js"></script>
+
+    <!-- datatable css file -->
+    <link rel="stylesheet" href="resources/datatables-1.13.6/css/jquery.dataTables.min.css">
+
+    <!-- datatable js file -->
+    <script src="resources/datatables-1.13.6/js/jquery.dataTables.min.js"></script>
+
+    <!-- link common css file -->
+    <link rel="stylesheet" href="resources/style/common.css">
+
+    <!-- link user css file -->
+    <link rel="stylesheet" href="resources/style/user.css">
+</head>
+
+<body>
+    <!-- main conainer start -->
+    <div class="container-fluid">
+        <!-- title area start -->
+        <div class="row">
+            <div class="col-12 text-center text-white d-flex align-items-center justify-content-center p-2 title-header-div">
+                <i class="fa-solid fa-2x fa-user me-3"></i>
+                <h2 class="">User Management</h2>
+            </div>
+        </div>
+        <!-- title area end -->
+
+        <!-- form area start -->
+        <div class="row mt-2 user-card">
+
+            <!-- form area start -->
+            <div class="col-5">
+                <form id="userform" onsubmit="return false">
+
+                    <!-- Employee -->
+
+                    <div class="row mt-2">
+                        <label for="employee" class="form-label fw-bold col-3">Employee :</label>
+                        <div class="col-9">
+                            <select id="employee" class="form-select" required onchange="selectDynamicValidator(selectEmployee,'','user','employee_id')">
+                            <option value="" selected disabled></option>
+                            <option value=""></option>
+                            <option value=""></option>
+                        </select>
+                        </div>
+                    </div>
+
+                    <!-- Employee -->
+
+                    <!-- Username -->
+
+                    <div class="row mt-4">
+                        <label for="username" class="form-label fw-bold col-3">Username :</label>
+                        <div class="col-9">
+                            <input type="text" class="form-control" id="username" onkeyup="textValidator(username,'^[A-Za-z0-9]{5,10}$','user','username')">
+                        </div>
+                    </div>
+
+                    <!-- Username -->
+
+                    <!-- Password -->
+
+                    <div class="row mt-4">
+                        <label for="password" class="form-label fw-bold col-3" onkeyup="passwordValidator(textPassword,'^[A-Za-z0-9]{8-20}$','user','username')">password :</label>
+                        <div class="col-9">
+                            <input type="password" class="form-control" id="textPassword">
+                        </div>
+                    </div>
+
+                    <!-- Password -->
+
+                    <!-- Re-Password -->
+
+                    <div class="row mt-4">
+                        <label for="repassword" class="form-label fw-bold col-3">Re-Password :</label>
+                        <div class="col-9">
+                            <input type="password" class="form-control" id="textPasswordRetype" onkeyup="passwordRetypeValidator()">
+                        </div>
+                    </div>
+
+                    <!-- Re-Password -->
+
+                    <!-- Email -->
+
+                    <div class="row mt-4">
+                        <label for="email" class="form-label fw-bold col-3">Email :</label>
+                        <div class="col-9">
+                            <input type="email" class="form-control" id="email">
+                        </div>
+                    </div>
+
+                    <!-- Email -->
+
+                    <!-- Role -->
+
+                    <div class="row mt-4">
+                        <label for="" class="col-3 fw-bold">Role</label>
+                        <div class="col-9" id="divRoles"></div>
+                    </div>
+
+                    <!-- Role -->
+
+                    <!-- Status -->
+                    <div class="row mt-2">
+                        <label for="" class="col-4 col-form-label fw-bold">Status :</label>
+                        <div class="mb-3 form-check col-8">
+                            <input type="checkbox" class="form-check-input" id="activeBtn">
+                            <label class="form-check-label" for="activeBtn" id="labelUserStatus">User Account is Not Active</label>
+                        </div>
+                    </div>
+                    <!-- Status -->
+
+                    <!-- Buttons -->
+                    <div class="row mt-2 mb-3">
+                        <div class="col-2">
+                            <button type="reset" class="btn btn-dark w-100">Clear</button>
+                        </div>
+                        <div class="col-6"></div>
+                        <div class="col-2">
+                            <button type="submit" class="btn btn-dark w-100" onclick="buttonUpdateUser()">Update</button>
+                        </div>
+                        <div class="col-2">
+                            <button type="submit" class="btn btn-dark w-100" onclick="buttonUserFormSubmit()">Add</button>
+                        </div>
+                    </div>
+                    <!-- Buttons -->
+
+
+                </form>
+
+            </div>
+            <!-- form area end -->
+
+            <!-- table area start -->
+            <div class="col-7 p-3">
+                <table class="table table-hover" id="tableUser">
+                    <thead class="table-info">
+                        <tr>
+                            <th>#</th>
+                            <th>Employee</th>
+                            <th>User Name</th>
+                            <th>Email</th>
+                            <th>Role</th>
+                            <th>Status</th>
+                            <th>Modify</th>
+                        </tr>
+                    </thead>
+                    <tbody class="table-body">
+                        <tr>
+                            <td>1</td>
+                            <td>Pavidu Livera</td>
+                            <td>Podi Eka</td>
+                            <td>pavidu@brightX.com</td>
+                            <td>Cashier</td>
+                            <td>Active</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>Nemash Gayeshitha</td>
+                            <td>Malu</td>
+                            <td>nemash@icloud.com</td>
+                            <td>Manager</td>
+                            <td>In-Active</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <!-- table area end -->
+        </div>
+        <!-- form area end -->
+    </div>
+    <!-- main conainer end -->
+
+
+    <!-- import table user js -->
+    <script src="resources/script/tableCommonFunction.js"></script>
+    <script src="resources/script/commonFunction.js"></script>
+    <script src="resources/script/validationFunction.js"></script>
+
+
+
+    <!-- import user.js -->
+    <script src="resources/controllerjs/user.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap min css file -->
+    <link rel="stylesheet" href="resources/bootstrap-5.2.3/css/bootstrap.min.css">
+    <!-- Bootstrap bundle min js file -->
+    <script src="resources/bootstrap-5.2.3/js/bootstrap.bundle.min.js">
+    </script>
+
+    <!-- Font Awesome css File -->
+    <link rel="stylesheet" href="resources/fontawesome-free-6.4.2-web/css/all.css">
+    <link rel="stylesheet" href="privilage.css">
+
+    <title>BIT Project 2024 | Day 5 | Privilage Validation</title>
+</head>
+
+<body>
+
+    <div class="row mt-3 flex justify-content-between">
+
+
+        <div class="col-1"></div>
+        <div class="col-6">
+            <button type="button" class="btn bg-black text-white fw-bold ms-1 me-1">EDIT</button>
+            <button type="button" class="btn bg-black text-white fw-bold ms-1 me-1" id="deleteBtn">DELETE</button>
+            <button type="button" class="btn bg-black text-white fw-bold ms-1 me-1">PRINT</button>
+        </div>
+        <div class="col-5"><button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#empPrivilage" aria-expanded="false" aria-controls="collapseExample">
+            Employee Privilage
+        </button></div>
+
+
+
+    </div>
+
+
+    <div class="collapse" id="empPrivilage">
+
+
+        <!-- Card area Start -->
+        <div class="row mt-2">
+            <div class="col-1"></div>
+            <div class="col-10 bg-white p-3 rounded-3">
+                <div class="col-12 text-center title-header-div item-head">
+                    <h2 class="text-black">Employee Management</h2>
+                </div>
+                <div class="card emp-card-body">
+                    <div class="card-body emp-card-body">
+                        <!-- form area start -->
+                        <div class="row">
+
+                            <div class="col-12">
+                                <form>
+                                    <div class="row">
+                                        <!--full name input start  -->
+                                        <div class="row mt-2">
+                                            <label for="inputName" class="col-3 col-form-label fw-bold">Role : </label>
+                                            <div class="col-9">
+                                                <select name="" class="form-select" id="role">
+                                                    <option selected disabled>Select Role</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <!--full name input  end -->
+
+                                        <!--full name input start  -->
+                                        <div class="row mt-2">
+                                            <label for="inputName" class="col-3 col-form-label fw-bold">Module : </label>
+                                            <div class="col-9">
+                                                <select name="" class="form-select" id="module">
+                                                    <option selected disabled>Select Module</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <!--full name input  end -->
+
+                                        <!--select start  -->
+                                        <div class="row mt-2">
+                                            <label for="inputName" class="col-3 col-form-label fw-bold">Select : </label>
+                                            <div class="col-9">
+                                                <input type="checkbox" id="select" onclick="selectHandler()"> <span id="selectText">Select privilage not Granted</span>
+                                            </div>
+                                        </div>
+                                        <!--select  end -->
+
+                                        <!--insert start  -->
+                                        <div class="row mt-2">
+                                            <label for="inputName" class="col-3 col-form-label fw-bold">Insert : </label>
+                                            <div class="col-9">
+                                                <input type="checkbox" id="insert" onclick="insertHandler()"> <span id="insertText">Insert privilage not Granted</span>
+                                            </div>
+                                        </div>
+                                        <!--insert  end -->
+
+                                        <!--update start  -->
+                                        <div class="row mt-2">
+                                            <label for="inputName" class="col-3 col-form-label fw-bold">Update : </label>
+                                            <div class="col-9">
+                                                <input type="checkbox" id="update" onclick="updateHandler()"> <span id="updateText">Update privilage not Granted</span>
+                                            </div>
+                                        </div>
+                                        <!--update  end -->
+
+                                        <!--delete start  -->
+                                        <div class="row mt-2">
+                                            <label for="inputName" class="col-3 col-form-label fw-bold">Delete : </label>
+                                            <div class="col-9">
+                                                <input type="checkbox" id="delete" onclick="deleteHandler()"> <span id="deleteText">Delete privilage not Granted</span>
+                                            </div>
+                                        </div>
+                                        <!--delete  end -->
+                                    </div>
+
+
+
+                                    <!-- Button row start -->
+                                    <div class="row mt-3">
+                                        <div class="col-3">
+                                            <!--<button type="reset" class="form-control bg-dark text-white border-0 fw-bold">Clear</button>--></div>
+                                        <div class="col-3"></div>
+                                        <div class="col-3">
+                                            <!--<button class="form-control bg-info border-0 bg-dark text-white fw-bold">Update</button>--></div>
+                                        <div class="col-3"><button type="submit" id="submit" class="form-control bg-success border-0 bg-dark text-white fw-bold">Add</button></div>
+                                    </div>
+                                    <!-- Button row end -->
+
+
+                                </form>
+                            </div>
+
+                        </div>
+                        <!-- form area start end-->
+
+
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="col-1"></div>
+        </div>
+
+    </div>
+
+
+    <!-- tabel area start -->
+    <div class="row mt-2">
+        <div class="col-1"></div>
+        <div class="col-10">
+            <div class="card emp-card-body">
+                <div class="card-body emp-card-body">
+                    <table class="table table-hover" id="table">
+                        <thead class="table-dark">
+                            <tr>
+                                <th>#</th>
+                                <th>Role</th>
+                                <th>Module</th>
+                                <th>Select</th>
+                                <th>Insert</th>
+                                <th>Update</th>
+                                <th>Delete</th>
+                                <th>Modify</th>
+                            </tr>
+                        </thead>
+                        <tbody class="table-secondary">
+                            <tr>
+                                <td>1</td>
+                                <td>gawrawa subasingha</td>
+                                <td>1233456789</td>
+                                <td>94200330033</td>
+                                <td>gwrawaniya@gmail.com</td>
+                                <td>married</td>
+                                <td class="text-center">
+                                    <button class="btn bg-success text-white w-25">Edit</button>
+                                    <button class="btn ms-1 me-1 bg-danger text-white">Delete</button>
+                                    <button class="btn bg-warning w-25">View</button>
+                                </td>
+                            </tr>
+
+
+
+
+
+
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-1"></div>
+    </div>
+    <!-- tabel area end -->
+    </div>
+
+
+    <script src="resources/controllerjs/privilage.js"></script>
+
+</body>
+
+</html>
