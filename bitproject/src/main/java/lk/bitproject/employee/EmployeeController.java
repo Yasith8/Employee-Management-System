@@ -1,6 +1,8 @@
 package lk.bitproject.employee;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,7 +32,11 @@ public class EmployeeController {
 
     @RequestMapping(value = "/employee")
     public ModelAndView empUI() {
+        //get log user authenication object using security
+        Authentication authentication=SecurityContextHolder.getContext().getAuthentication();
         ModelAndView empView = new ModelAndView(); // for return ui
+        empView.addObject("title", "Employee Management");
+        empView.addObject("user", authentication.getName());
         empView.setViewName("employee - 5.html");
         return empView;
     }

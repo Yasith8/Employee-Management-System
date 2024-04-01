@@ -7,47 +7,9 @@ window.addEventListener('load', () => {
     $('[data-bs-toggle="tooltip"]').tooltip();
 
     // call table refresh function
-    refreshEmployeeTable(
+    refreshEmployeeTable();
 
-    );
-
-
-    //define new object
-    employee = new Object();
-
-    //
-
-    employeeStatuses = [{ id: 1, name: 'Working' }, { id: 2, name: 'Resign' }, { id: 3, name: 'Delete' }];
-
-    /*  const selectStatusElement = document.querySelector('#selectStatus');
-     selectStatusElement.innerHTML = '';
-
-     const optionMsg = document.createElement('option');
-     optionMsg.innerText = 'Select Status';
-     optionMsg.disabled = 'disabled';
-     optionMsg.selected = 'selected';
-     selectStatusElement.appendChild(optionMsg);
-
-     employeeStatuses.forEach(element => {
-         const option = document.createElement('option');
-         option.innerText = element.name;
-         option.value = element;
-         selectStatusElement.appendChild(option);
-     }); */
-
-
-    fillDataIntoSelect(selectStatus, 'Plz Select', employeeStatuses, 'name')
-
-
-    designations = [{ id: 1, name: 'Manager' }, { id: 2, name: 'Cashier' }, { id: 3, name: 'Store-Manager' }];
-    //designations = getServiceAjaxRequest("/designation/alldata");
-
-
-
-    //call function filldatantoselectelement
-    fillDataIntoSelect(selectDesignation, 'Select Designation', designations, 'name');
-
-
+    refreshEmployeeForm();
 
 
 })
@@ -153,7 +115,7 @@ const refreshEmployeeTable = () => {
 
 }
 
-
+//add button
 const refreshEmployeeForm = () => {
     //define new object
     employee = new Object();
@@ -198,6 +160,13 @@ const refreshEmployeeForm = () => {
     textCallingName.style.border = '1px solid #ced4da'
     textFullName.style.border = '1px solid #ced4da'
     textEmail.style.border = '1px solid #ced4da'
+
+    updateBtn.disabled = "disabled";
+    updateBtn.style.cursor = "not-allowed";
+    submitBtn.disabled = "";
+    updateBtn.style.cursor = "pointer";
+
+
 }
 
 // create function get status name
@@ -278,7 +247,11 @@ const employeeFormRefill = (ob, rowIndex) => {
     fillDataIntoSelect(selectDesignation, 'Plz Select', designations, 'name', ob.designation_id.name)
 
 
+    updateBtn.disabled = "";
+    updateBtn.style.cursor = "pointer";
 
+    submitBtn.disabled = "disabled";
+    updateBtn.style.cursor = "not-allowed";
 
 }
 

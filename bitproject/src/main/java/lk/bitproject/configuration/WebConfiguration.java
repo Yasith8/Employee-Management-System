@@ -43,7 +43,7 @@ public class WebConfiguration {
             .usernameParameter("username")//parameter name of username
             .passwordParameter("password")//parameter name of password
             .defaultSuccessUrl("/dashboard",true)
-            .failureUrl("/login?eror=invalidusernamepassword");
+            .failureUrl("/login?error=invalidusernamepassword");
         })
         //logout filter
         .logout((logout)->{

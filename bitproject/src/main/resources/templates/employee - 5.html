@@ -1,42 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 
+<head th:replace="~{component::headerFragment}">
+</head>
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Employee Management : Bit Project 2024 : Day 8 </title>
-    <link rel="icon" href="resources/image/1.jpg">
-
-
-    <!-- link bs5 css file -->
-    <link rel="stylesheet" href="resources/bootstrap-5.2.3/css/bootstrap.min.css">
-
-    <!-- link bs5 js file -->
-    <script src="resources/bootstrap-5.2.3/js/bootstrap.bundle.min.js">
-    </script>
-
-    <!-- lik fontawesome css file -->
-    <link rel="stylesheet" href="resources/fontawesome-free-6.4.2/css/all.css">
-
-    <!-- link jquery js file -->
-    <script src="resources/script/jquery-3.7.1.js"></script>
-
-    <!-- datatable css file -->
-    <link rel="stylesheet" href="resources/datatables-1.13.6/css/jquery.dataTables.min.css">
-
-    <!-- datatable js file -->
-    <script src="resources/datatables-1.13.6/js/jquery.dataTables.min.js"></script>
-
-    <!-- link employee css file -->
     <link rel="stylesheet" href="resources/style/employee.css">
-
-    <!-- link common css file -->
-    <link rel="stylesheet" href="resources/style/common.css">
-
+    <script src="resources/controllerjs/employee-5.js"></script>
 </head>
 
 <body>
+    <nav th:replace="~{component::navFragment}"></nav>
 
     <div class="container-fluid mt-2">
 
@@ -372,12 +346,12 @@
                                         Clear
                                     </button>
                                 <button type="submit" class="btn fw-bold
-                            me-2 ms-2 btn-update all-button" onclick="buttonEmployeeUpdate()">
+                            me-2 ms-2 btn-update all-button" id="updateBtn" style="pointer-events: all" onclick="buttonEmployeeUpdate()">
                                     <i class="fa-solid fa-edit"></i>
                                     Update
                                 </button>
                                 <button type="submit" class="btn fw-bold 
-                            btn-add all-button" onclick="buttonEmployeeSubmit()">
+                            btn-add all-button" id="submitBtn" style="pointer-events: all" onclick="buttonEmployeeSubmit()">
                                     <i class="fa-solid fa-plus"></i>
                                     Add
                                 </button>
@@ -391,17 +365,7 @@
         </div>
     </div>
 
-    <!-- link table common function js file -->
-    <script src="/resources/script/tableCommonFunction.js"></script>
 
-    <!-- link common js file -->
-    <script src="/resources/script/commonFunction.js"></script>
-
-    <!-- link validation fucntion js -->
-    <script src="/resources/script/validationFunction.js"></script>
-
-    <!-- link employee js file -->
-    <script src="resources/controllerjs/employee-5.js"></script>
 
 
 </body>

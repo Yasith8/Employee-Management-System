@@ -25,6 +25,8 @@ public class UserController {
     @RequestMapping(value="/user")
 	public ModelAndView userUi(){
 		ModelAndView userView=new ModelAndView();
+        userView.addObject("title", "User Management");
+        userView.addObject("user", "Kamal5");
 		userView.setViewName("user.html");
 		return userView;
 	}
