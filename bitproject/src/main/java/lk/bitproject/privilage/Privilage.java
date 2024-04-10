@@ -26,16 +26,16 @@ public class Privilage {
     private int id;
 
     @Column(name = "insprv")
-    private int insprv;
+    private Boolean insprv;
 
     @Column(name = "updprv")
-    private int updprv; 
+    private Boolean updprv; 
 
     @Column(name = "selprv")
-    private int selprv; 
+    private Boolean selprv; 
 
     @Column(name = "delprv")
-    private int delprv; 
+    private Boolean delprv; 
 
 
     @ManyToOne
@@ -45,4 +45,11 @@ public class Privilage {
     @ManyToOne
     @JoinColumn(name = "module_id",referencedColumnName="id")
     private Module module_id;
+
+    public Privilage(Boolean insprv , Boolean updprv, Boolean selprv , Boolean delprv){
+        this.selprv=selprv;
+        this.insprv=insprv;
+        this.updprv=updprv;
+        this.delprv=delprv;
+    }
 }

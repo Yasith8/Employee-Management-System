@@ -3,6 +3,8 @@ window.addEventListener('load', () => {
 
     // console.log('onload');
 
+    userPrivilage = getServiceAjaxRequest('/privilage/bymodule/EMPLOYEE')
+
     // tooltip enable
     $('[data-bs-toggle="tooltip"]').tooltip();
 
@@ -247,11 +249,18 @@ const employeeFormRefill = (ob, rowIndex) => {
     fillDataIntoSelect(selectDesignation, 'Plz Select', designations, 'name', ob.designation_id.name)
 
 
-    updateBtn.disabled = "";
-    updateBtn.style.cursor = "pointer";
 
     submitBtn.disabled = "disabled";
     updateBtn.style.cursor = "not-allowed";
+
+    if (userPrivilage.insprev) {
+        updateBtn.disabled = "";
+        updateBtn.style.cursor = "pointer";
+    } else {
+        submitBtn.disabled = "disabled";
+        updateBtn.style.cursor = "not-allowed";
+    }
+
 
 }
 

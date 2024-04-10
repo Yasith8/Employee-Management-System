@@ -30,7 +30,14 @@
 
             </div>
             <div class="col-4 text-end">
-                <button type="button" data-bs-toggle="modal" data-bs-target="#employeeAddModal" class="btn btn-primary">
+                <button type="button" data-bs-toggle="modal" data-bs-target="#employeeAddModal" class="btn btn-primary" onclick="
+                let userConform=confirm('Are you sure to reset Employee Form?');
+                if(userConform){
+                    formEmployee.reset();
+                    refreashEmployeeForm();
+                    divModifyButton.className='d-none';
+                }
+                ">
                     Add New Employee </button>
             </div>
             <div class="col-1"></div>
