@@ -19,7 +19,7 @@ public class PrivilageController {
 
     
     @Autowired
-    private PrivilageDao dao;
+    private static PrivilageDao dao;
 
     @RequestMapping(value = "/privilage")
     public ModelAndView privUi(){
@@ -38,15 +38,23 @@ public class PrivilageController {
     @GetMapping(value="/privilage/bymodule/{modulename}",produces = "application/json")
     public Privilage allEmployeeByModule(@PathVariable("modulename") String modulename){
         //return dao.getPrivilageByUserModule();
-
+        
         //get log user authentication object using security context holder
         Authentication authentication=SecurityContextHolder.getContext().getAuthentication();
-
-        if(authentication.getName().equals("Admin")){
+        return getPrivilageByUserModule(authentication.getName(), modulename);
+        
+       
+        
+    }
+    
+    
+    //define function for get privilage by logged user and given module
+    public Privilage getPrivilageByUserModule(String username,String modulename){
+        if(username.equals("Admin")){
             Privilage adminPriv=new Privilage(true,false,true,false);
             return adminPriv;
         }else{
-            String privi = dao.getPrivilageByUserModule(authentication.getName(),modulename);
+            String privi = dao.getPrivilageByUserModule(username,modulename);
             String[] priviArray=privi.split(",");
 
             Boolean select=priviArray[0].equals("1");
@@ -57,7 +65,6 @@ public class PrivilageController {
             
             return userPriv;
         }
-
     }
 
 }

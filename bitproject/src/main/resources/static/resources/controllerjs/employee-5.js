@@ -486,7 +486,7 @@ const checkEmployeeFormUpdates = () => {
 }
 
 const buttonEmployeeUpdate = () => {
-    console.log("clicked")
+    console.log("update button clicked")
 
     //check form error
     let errors = checkEmployeeInputError();

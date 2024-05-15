@@ -35,6 +35,7 @@ public class WebConfiguration {
             .requestMatchers("/employee/**").hasAnyAuthority("Admin","Manager")
             .requestMatchers("/user/**").hasAnyAuthority("Admin","Manager")
             .requestMatchers("/privilage/**").hasAnyAuthority("Admin","Manager")
+            .requestMatchers("/supplier/**").hasAnyAuthority("Admin","Manager","Store-manager")
             .anyRequest().authenticated();//all other requests need authentication
         })
         //login filter

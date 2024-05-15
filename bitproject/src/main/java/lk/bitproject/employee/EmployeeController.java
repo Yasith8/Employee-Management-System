@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import jakarta.el.ELException;
+import lk.bitproject.privilage.Privilage;
+import lk.bitproject.privilage.PrivilageController;
 
 import java.util.*;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -30,6 +32,8 @@ public class EmployeeController {
     @Autowired
     private EmployeeStatusDao daoStatus;
 
+    private PrivilageController privilageController=new PrivilageController();
+
     @RequestMapping(value = "/employee")
     public ModelAndView empUI() {
         //get log user authenication object using security
@@ -46,6 +50,15 @@ public class EmployeeController {
     // @requestMapping(value="/employee/alldata",produces='application.json',method=RequestMethod.GET)
     @GetMapping(value = "/employee/alldata", produces = "application/json")
     public List<Employee> allEmployeeData() {
+
+        //authentication and autherization
+
+        Authentication auth=SecurityContextHolder.getContext().getAuthentication();
+        Privilage usePrivilage=privilageController.getPrivilageByUserModule(auth.getName(), "Employee");
+
+        if(!usePrivilage.getSelprv()){
+            return new ArrayList<Employee>();
+        }
         return dao.findAll();
     }
 
@@ -57,7 +70,15 @@ public class EmployeeController {
     // define post mapping for saving employee records
     @PostMapping(value = "/employee")
     public String addEmployee(@RequestBody Employee employee) { // request bodyRequest
-        // TAuthentication and Autherization
+        // Authentication and Autherization
+        Authentication auth=SecurityContextHolder.getContext().getAuthentication();
+
+        //get privilage Object using getPrivilageByModule Function
+        Privilage userPrivilage=privilageController.getPrivilageByUserModule(auth.getName(),"Employee");
+
+        if(!userPrivilage.getInsprv()){
+            return "Permission Denied! Save is Not Completed";
+        }
 
         // check duplicates
 
@@ -129,6 +150,13 @@ public class EmployeeController {
     public String updateEmployee(@RequestBody Employee employee) {
 
         // authetication and autherization
+        Authentication auth=SecurityContextHolder.getContext().getAuthentication();
+
+        Privilage userPrivilage=privilageController.getPrivilageByUserModule(auth.getName(), "Employee");
+        
+        if(!userPrivilage.getUpdprv()){
+            return "Permission Denied. Save not Completed";
+        }
 
         // duplicates and existing
 

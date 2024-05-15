@@ -1,16 +1,12 @@
-/* package lk.bitproject.item;
+package lk.bitproject.item;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
-import lk.bitproject.employee.Designation;
-import lk.bitproject.employee.EmployeeStatus;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -61,7 +57,7 @@ public class Item {
     private String addeddatetime; 
 
 
-    @ManyToOne   //relationship format    
+  /*   @ManyToOne   //relationship format    
     @JoinColumn(name="unitype_id",referencedColumnName = "id")   //join column
     private UnitType unitype_id;
 
@@ -79,6 +75,5 @@ public class Item {
 
     @ManyToOne   //relationship format
     @JoinColumn(name="subcategory_id",referencedColumnName = "id")     //join column
-    private Subcategory subcategory_id;
+    private Subcategory subcategory_id; */
 }
- */
