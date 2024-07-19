@@ -2,7 +2,7 @@ package lk.bitproject.item;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-
+import lk.bitproject.supplier.SupplierHasItem;
 
 import java.util.*;
 

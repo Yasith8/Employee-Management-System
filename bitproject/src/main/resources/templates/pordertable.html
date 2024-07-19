@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head th:replace="~{component::headerFragment}">
+</head>
+
+<head>
+    <link rel="stylesheet" href="resources/style/purchaseorder.css">
+    <script src="resources/controllerjs/purchasetable.js"></script>
+</head>
+
+<body>
+
+    <div class="container-fluid mt-2">
+
+        <!-- title area start -->
+        <div class="row m-2">
+            <div class="col-12 text-center 
+            title-header-div">
+                <h2> Purchase Management </h2>
+            </div>
+        </div>
+        <!-- title area End -->
+
+
+
+        <!-- table Area Start-->
+        <div class="row mt-2">
+            <div class="col-1"></div>
+            <div class="col-10">
+                <div class="card employee-card">
+                    <div class="card-body employee-cardbody">
+
+                        <table class="table table-hover" id="tablePurchaseOrder">
+                            <thead class="table-header">
+                                <tr>
+                                    <th> # </th>
+                                    <th> Purchase Order Code </th>
+                                    <th> Required date </th>
+                                    <th> Order Status </th>
+                                    <th> Supplier Name </th>
+                                    <th> items </th>
+                                    <th> total amount </th>
+                                    <th> Year </th>
+                                    <th> Modify </th>
+                                </tr>
+                            </thead>
+
+                            <tbody class="table-body">
+                                <tr>
+                                    <td> 1 </td>
+                                    <td> Haritha Paramodha </td>
+                                    <td> 92303313523V </td>
+                                    <td> 0763704119 </td>
+                                    <td> Haritha@gmail.com </td>
+                                    <td>
+                                        <p>Working</p>
+                                    </td>
+
+                                    <td>
+                                        <button type="button" class="btn"> Edit </button>
+                                        <button type="button" class="btn btn-danger ms-1 me-1"> Delete </button>
+                                        <button type="button" class="btn btn-outline-info"> View </button>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td> 2 </td>
+                                    <td> Nuwan Bandara </td>
+                                    <td> 95263313523V </td>
+                                    <td> 0715804119 </td>
+                                    <td> nuwan@gmail.com </td>
+                                    <td>
+                                        <p>Resign</p>
+                                    </td>
+
+                                    <td>
+                                        <button type="button" class="btn">
+                                            <i class="fa-solid fa-edit"></i>
+                                        </button>
+                                        <button type="button" class="btn ms-1 me-1">
+                                            <i class="fa-solid fa-trash"></i>
+                                        </button>
+                                        <button type="button" class="btn ">
+                                            <i class="fa-solid fa-print"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td> 3 </td>
+                                    <td> Isuru Virajitha </td>
+                                    <td> 93663313523V </td>
+                                    <td> 0785804119 </td>
+                                    <td> isuru@gmail.com </td>
+                                    <td>
+                                        <p>Working</p>
+                                    </td>
+
+                                    <td>
+                                        <button type="button" class="btn">
+                                            <i class="fa-solid fa-edit"></i> Edit </button>
+                                        <button type="button" class="btn btn-danger ms-1 me-1">
+                                            <i class="fa-solid fa-trash"></i> Delete </button>
+                                        <button type="button" class="btn btn-outline-info">
+                                            <i class="fa-solid fa-print"></i> View </button>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td> 4 </td>
+                                    <td> Sashini Sithara </td>
+                                    <td> 97563313523V </td>
+                                    <td> 0762804119 </td>
+                                    <td> sashini@gmail.com </td>
+                                    <td>
+                                        <p>Working</p>
+                                    </td>
+
+                                    <td>
+                                        <div class="dropdown">
+                                            <button type="button" data-bs-toggle="dropdown" aria-expanded="false" class="btn btn-primary dropdown-toggle">
+                                                Modify </button>
+                                            <ul class="dropdown-menu">
+                                                <li><a class="dropdown-item" href=""> Edit </a></li>
+                                                <li><a class="dropdown-item" href=""> Delete </a></li>
+                                                <li><a class="dropdown-item" href=""> View </a></li>
+                                            </ul>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-1"></div>
+
+        </div>
+        <!-- table Area End-->
+
+    </div>
+
+
+
+
+
+</body>
+
+</html>

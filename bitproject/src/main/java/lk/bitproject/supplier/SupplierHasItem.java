@@ -1,8 +1,9 @@
 package lk.bitproject.supplier;
-package lk.bitproject.item;
 
 
 
+
+import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
@@ -14,7 +15,7 @@ import lombok.NoArgsConstructor;
 
 
 
-
+@Entity
 @Table(name = "supplier_has_item")
 @Data
 @NoArgsConstructor  

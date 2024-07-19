@@ -1,6 +1,5 @@
-
 // creat function for fill data into table
-const fillDataIntoTable1 = (tableId, dataList, displayPropertyList, refillFunction , deleteFunction , printFunction, buttonVisibility = true)=>{
+const fillDataIntoTable1 = (tableId, dataList, displayPropertyList, refillFunction, deleteFunction, printFunction, buttonVisibility = true) => {
 
     const tableBody = tableId.children[1];
     tableBody.innerHTML = '';
@@ -12,36 +11,47 @@ const fillDataIntoTable1 = (tableId, dataList, displayPropertyList, refillFuncti
         tdIndex.innerText = index + 1;
         tr.appendChild(tdIndex);
 
-        displayPropertyList.forEach((ob,ind) => {
+        displayPropertyList.forEach((ob, ind) => {
             const td = document.createElement('td');
-            if(ob.dataType == 'text'){
+            if (ob.dataType == 'text') {
                 td.innerText = element[ob.propertyName];
             }
             if (ob.dataType == 'function') {
-              td.innerHTML =  ob.propertyName(element);
+                if (ob.propertyName != null) {
+                    td.innerHTML = ob.propertyName(element);
+                } else {
+                    td.innerHTML = "-";
+                }
             }
+            if (ob.dataType == 'amount') {
+                td.innerHTML = parseFloat(element[ob.propertyName]).toFixed(2);
+            }
+            if (ob.dataType == 'year') {
+                td.innerHTML = String(element[ob.propertyName]).substring(0, 4);
+            }
+
 
             tr.appendChild(td);
 
         });
-     
+
         const tdButton = document.createElement('td'); // button column
 
         const editButton = document.createElement('button');
         editButton.className = 'btn btn-edit fw-bold';
         editButton.innerHTML = '<i class="fa-solid fa-edit "></i> Edit';
 
-        editButton.onclick = function () {
-         //console.log('edit');
-         refillFunction(element, index);
+        editButton.onclick = function() {
+            //console.log('edit');
+            refillFunction(element, index);
         }
 
         const deleteButton = document.createElement('button');
         deleteButton.className = 'btn btn-outline-danger fw-bold ms-1 me-1';
         deleteButton.innerHTML = '<i class="fa-solid fa-trash "></i> Delete';
 
-        deleteButton.onclick = function () {
-           // console.log('delete' , element);
+        deleteButton.onclick = function() {
+            // console.log('delete' , element);
             deleteFunction(element, index);
         }
 
@@ -49,20 +59,20 @@ const fillDataIntoTable1 = (tableId, dataList, displayPropertyList, refillFuncti
         printButton.className = 'btn';
         printButton.innerHTML = '<i class="fa-solid fa-eye fa-beat "></i> ';
 
-        printButton.onclick = function () {
-           // console.log('print');
+        printButton.onclick = function() {
+            // console.log('print');
             printFunction(element, index);
         }
 
 
-        tdButton.appendChild(editButton);// append button into table column 
-        tdButton.appendChild(deleteButton);// append button into table column 
-        tdButton.appendChild(printButton);// append button into table column
+        tdButton.appendChild(editButton); // append button into table column 
+        tdButton.appendChild(deleteButton); // append button into table column 
+        tdButton.appendChild(printButton); // append button into table column
 
         if (buttonVisibility) {
             tr.appendChild(tdButton); // append button column into table row
-        }else{
-         if(document.getElementById('tdModify') != undefined)
+        } else {
+            if (document.getElementById('tdModify') != undefined)
                 tdModify.className = 'd-none';
         }
 
@@ -76,7 +86,7 @@ const fillDataIntoTable1 = (tableId, dataList, displayPropertyList, refillFuncti
 
 
 // creat function for fill data into table
-const fillDataIntoTable2 = (tableId, dataList, displayPropertyList, refillFunction , deleteFunction , printFunction)=>{
+const fillDataIntoTable2 = (tableId, dataList, displayPropertyList, refillFunction, deleteFunction, printFunction) => {
 
     const tableBody = tableId.children[1];
     tableBody.innerHTML = '';
@@ -88,19 +98,19 @@ const fillDataIntoTable2 = (tableId, dataList, displayPropertyList, refillFuncti
         tdIndex.innerText = index + 1;
         tr.appendChild(tdIndex);
 
-        displayPropertyList.forEach((ob,ind) => {
+        displayPropertyList.forEach((ob, ind) => {
             const td = document.createElement('td');
-            if(ob.dataType == 'text'){
+            if (ob.dataType == 'text') {
                 td.innerText = element[ob.propertyName];
             }
             if (ob.dataType == 'function') {
-              td.innerHTML =  ob.propertyName(element);
+                td.innerHTML = ob.propertyName(element);
             }
 
             tr.appendChild(td);
 
         });
-     
+
         const tdButton = document.createElement('td'); // button column
         tdButton.className = 'text-center';
 
@@ -119,17 +129,17 @@ const fillDataIntoTable2 = (tableId, dataList, displayPropertyList, refillFuncti
 
         const dropdownLiEdit = document.createElement('li');
         dropdownLiEdit.className = 'dropdown-item';
-       // dropdownLiEdit.innerText = 'edit';
+        // dropdownLiEdit.innerText = 'edit';
         dropdownUL.appendChild(dropdownLiEdit);
 
         const dropdownLiDelete = document.createElement('li');
         dropdownLiDelete.className = 'dropdown-item';
-       // dropdownLiDelete.innerText = 'Delete';
+        // dropdownLiDelete.innerText = 'Delete';
         dropdownUL.appendChild(dropdownLiDelete);
 
         const dropdownLiPrint = document.createElement('li');
         dropdownLiPrint.className = 'dropdown-item';
-       // dropdownLiPrint.innerText = 'Print';
+        // dropdownLiPrint.innerText = 'Print';
         dropdownUL.appendChild(dropdownLiPrint);
 
         dropdownDIV.appendChild(dropdownUL);
@@ -140,9 +150,9 @@ const fillDataIntoTable2 = (tableId, dataList, displayPropertyList, refillFuncti
         editButton.className = 'btn btn-edit w-100 fw-bold';
         editButton.innerHTML = '<i class="fa-solid fa-edit "></i> Edit';
 
-        editButton.onclick = function () {
-         //console.log('edit');
-         refillFunction(element, index);
+        editButton.onclick = function() {
+            //console.log('edit');
+            refillFunction(element, index);
         }
 
         dropdownLiEdit.appendChild(editButton);
@@ -151,8 +161,8 @@ const fillDataIntoTable2 = (tableId, dataList, displayPropertyList, refillFuncti
         deleteButton.className = 'btn btn-outline-danger fw-bold w-100';
         deleteButton.innerHTML = '<i class="fa-solid fa-trash "></i> Delete';
 
-        deleteButton.onclick = function () {
-           // console.log('delete' , element);
+        deleteButton.onclick = function() {
+            // console.log('delete' , element);
             deleteFunction(element, index);
         }
 
@@ -162,8 +172,8 @@ const fillDataIntoTable2 = (tableId, dataList, displayPropertyList, refillFuncti
         printButton.className = 'btn btn-outline-info fw-bold w-100';
         printButton.innerHTML = '<i class="fa-solid fa-eye fa-beat "></i> View';
 
-        printButton.onclick = function () {
-           // console.log('print');
+        printButton.onclick = function() {
+            // console.log('print');
             printFunction(element, index);
         }
 
@@ -182,7 +192,7 @@ const fillDataIntoTable2 = (tableId, dataList, displayPropertyList, refillFuncti
 
 
 // creat function for fill data into table
-const fillDataIntoTable3 = (tableId, dataList, displayPropertyList, divButton)=>{
+const fillDataIntoTable3 = (tableId, dataList, displayPropertyList, divButton) => {
 
     const tableBody = tableId.children[1];
     tableBody.innerHTML = '';
@@ -194,19 +204,19 @@ const fillDataIntoTable3 = (tableId, dataList, displayPropertyList, divButton)=>
         tdIndex.innerText = index + 1;
         tr.appendChild(tdIndex);
 
-        displayPropertyList.forEach((ob,ind) => {
+        displayPropertyList.forEach((ob, ind) => {
             const td = document.createElement('td');
-            if(ob.dataType == 'text'){
+            if (ob.dataType == 'text') {
                 td.innerText = element[ob.propertyName];
             }
             if (ob.dataType == 'function') {
-              td.innerHTML =  ob.propertyName(element);
+                td.innerHTML = ob.propertyName(element);
             }
 
             tr.appendChild(td);
 
         });
-     
+
         const tdButton = document.createElement('td'); // button column
         tdButton.className = 'text-center';
 
@@ -221,7 +231,7 @@ const fillDataIntoTable3 = (tableId, dataList, displayPropertyList, divButton)=>
         }
 
         tdButton.appendChild(inputRadio);
-    
+
         tr.appendChild(tdButton); // append button column into table row
 
         tableBody.appendChild(tr); // append tr into table body
@@ -234,7 +244,7 @@ const fillDataIntoTable3 = (tableId, dataList, displayPropertyList, divButton)=>
 
 
 // creat function for fill data into table
-const fillDataIntoTable4 = (tableId, dataList, displayPropertyList, divButton)=>{
+const fillDataIntoTable4 = (tableId, dataList, displayPropertyList, divButton) => {
 
     const tableBody = tableId.children[1];
     tableBody.innerHTML = '';
@@ -246,20 +256,20 @@ const fillDataIntoTable4 = (tableId, dataList, displayPropertyList, divButton)=>
         tdIndex.innerText = index + 1;
         tr.appendChild(tdIndex);
 
-        displayPropertyList.forEach((ob,ind) => {
+        displayPropertyList.forEach((ob, ind) => {
             const td = document.createElement('td');
-            if(ob.dataType == 'text'){
+            if (ob.dataType == 'text') {
                 td.innerText = element[ob.propertyName];
             }
             if (ob.dataType == 'function') {
-              td.innerHTML =  ob.propertyName(element);
+                td.innerHTML = ob.propertyName(element);
             }
 
             tr.appendChild(td);
 
         });
-     
-    
+
+
         tr.onclick = () => {
             window['editOb'] = element;
             window['editRow'] = index;
@@ -274,7 +284,7 @@ const fillDataIntoTable4 = (tableId, dataList, displayPropertyList, divButton)=>
 
 
 // creat function for fill data into table
-const fillDataIntoTable5 = (tableId, dataList, displayPropertyList,refillFunction, divButton)=>{
+const fillDataIntoTable5 = (tableId, dataList, displayPropertyList, refillFunction, divButton) => {
 
     const tableBody = tableId.children[1];
     tableBody.innerHTML = '';
@@ -286,22 +296,22 @@ const fillDataIntoTable5 = (tableId, dataList, displayPropertyList,refillFunctio
         tdIndex.innerText = index + 1;
         tr.appendChild(tdIndex);
 
-        displayPropertyList.forEach((ob,ind) => {
+        displayPropertyList.forEach((ob, ind) => {
             const td = document.createElement('td');
-            if(ob.dataType == 'text'){
+            if (ob.dataType == 'text') {
                 td.innerText = element[ob.propertyName];
             }
             if (ob.dataType == 'function') {
-              td.innerHTML =  ob.propertyName(element);
+                td.innerHTML = ob.propertyName(element);
             }
 
             tr.appendChild(td);
 
         });
-     
-    
+
+
         tr.onclick = () => {
-            refillFunction(element,index);
+            refillFunction(element, index);
             window['editOb'] = element;
             window['editRow'] = index;
             divButton.className = '';
